@@ -147,7 +147,7 @@ h3 {
   width: 80%;
   height: 190px;
   padding: 2rem;
-  margin: 25px;
+  margin: 50px;
   background: #0f05a0;
   padding-top: 60px;
   padding-bottom: 0;
