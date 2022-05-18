@@ -4,7 +4,7 @@
     <h2 class="date">{{ currentDate() }}</h2>
 
     <ul class="ul" v-if="entries">
-      <li class="box" v-for="entry in entries.slice(1)" :key="entry">
+      <li class="box" v-for="entry in entries" :key="entry">
         <span class="box-date">{{ entry[0] }} , {{ entry[1] }}</span
         ><br />
         <h3 class="box-title">{{ entry[2] }}</h3>
@@ -12,7 +12,7 @@
       </li>
     </ul>
 
-    <p class="warning" v-if="!value">NO PROGRAM TODAY:( </p> 
+    <p class="warning" v-else>NO PROGRAM TODAY:( </p> 
 
     <!-- <ul>
       <li>
@@ -58,7 +58,7 @@ export default {
   },
   computed: {
     gsheet_url() {
-      return `https://sheets.googleapis.com/v4/spreadsheets/${this.sheet_id}/values:batchGet?ranges=A1%3AE100&valueRenderOption=FORMATTED_VALUE&key=${this.api_token}`;
+      return `https://sheets.googleapis.com/v4/spreadsheets/${this.sheet_id}/values:batchGet?ranges=A2%3AE100&valueRenderOption=FORMATTED_VALUE&key=${this.api_token}`;
     },
   },
   methods: {
@@ -195,5 +195,11 @@ footer {
 
 .img {
   height: 50px;
+}
+
+.warning{
+  font-size: 60px;
+  text-align: center;
+  text-decoration-line: underline;
 }
 </style>
