@@ -80,10 +80,18 @@ export default {
       }
       return dateTime;
     },
+
+    refreshData() {
+      this.getData();
+      this.currentDate();
+    }
   },
 
   mounted() {
-    this.getData();
+    this.refreshData();
+    setInterval(() => {
+      this.refreshData();
+    }, /*180000000000000000*/);
   },
 };
 </script>
