@@ -3,7 +3,7 @@
     <h1 class="title">{{ title }}</h1>
     <h2 class="date">{{ currentDate() }}</h2>
 
-    <ul class="ul">
+    <ul class="ul" v-if="entries">
       <li class="box" v-for="entry in entries.slice(1)" :key="entry">
         <span class="box-date">{{ entry[0] }} , {{ entry[1] }}</span
         ><br />
@@ -11,6 +11,8 @@
         <span class="box-text">{{ entry[3] }}</span>
       </li>
     </ul>
+
+    <p class="warning" v-if="!value">NO PROGRAM TODAY:( </p> 
 
     <!-- <ul>
       <li>
