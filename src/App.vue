@@ -3,14 +3,16 @@
     <h1 class="title">{{ title }}</h1>
     <h2 class="date">{{ currentDate() }}</h2>
 
-    <ul class="ul">
-      <li class="box" v-for="entry in entries.slice(1)" :key="entry">
+    <ul class="ul" v-if="entries">
+      <li class="box" v-for="entry in entries" :key="entry">
         <span class="box-date">{{ entry[0] }} , {{ entry[1] }}</span
         ><br />
         <h3 class="box-title">{{ entry[2] }}</h3>
         <span class="box-text">{{ entry[3] }}</span>
       </li>
     </ul>
+
+    <p class="warning" v-else>NO PROGRAM TODAY:( </p> 
 
     <!-- <ul>
       <li>
@@ -56,7 +58,7 @@ export default {
   },
   computed: {
     gsheet_url() {
-      return `https://sheets.googleapis.com/v4/spreadsheets/${this.sheet_id}/values:batchGet?ranges=A1%3AE100&valueRenderOption=FORMATTED_VALUE&key=${this.api_token}`;
+      return `https://sheets.googleapis.com/v4/spreadsheets/${this.sheet_id}/values:batchGet?ranges=A2%3AE100&valueRenderOption=FORMATTED_VALUE&key=${this.api_token}`;
     },
   },
   methods: {
@@ -78,10 +80,18 @@ export default {
       }
       return dateTime;
     },
+
+    refreshData() {
+      this.getData();
+      this.currentDate();
+    }
   },
 
   mounted() {
-    this.getData();
+    this.refreshData();
+    setInterval(() => {
+      this.refreshData();
+    }, /*180000000000000000*/);
   },
 };
 </script>
@@ -185,5 +195,11 @@ footer {
 
 .img {
   height: 50px;
+}
+
+.warning{
+  font-size: 60px;
+  text-align: center;
+  text-decoration-line: underline;
 }
 </style>
