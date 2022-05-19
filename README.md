@@ -1,5 +1,8 @@
 # welcome-screen-chaimaa
 
+![welcome-screen-chaima](https://user-images.githubusercontent.com/98743839/169236757-8fe4f5d4-85ac-4c31-bb87-02063661dad7.png)
+
+
 ## Project setup
 ```
 npm install
